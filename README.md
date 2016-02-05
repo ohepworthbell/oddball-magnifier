@@ -6,26 +6,23 @@ A touch-friendly, light-weight image magnifier. Can be used on multiple images o
 
 
 ### How to use the Oddball Magnifier
-To designate an image to be magnified:
+To use the Oddball Magnifier, simply include any class-name on an image and call the script like so:
 ```
-<img src="example.jpg" class="your-class-name" />
-```
+<img src="./example.jpg" class="your-class-name" />
 
-Make sure you have jQuery called, thing simply add 
-```
+...
+
 <script src='./oddballMagnifier.min.js'></script>
-```
-
-To run the script:
-```
 <script>
-$('.your-class-name').oddballMagnifier();
+$(document).ready(function() {
+	$('.your-class-name').oddballMagnifier();
+});
 </script>
 ```
 
-You can also designate a different magnified image (for example, a high-definition version of the image) like so:
+You can also designate a different magnified image from the main image (for example, a high-definition version of the image) like so:
 ```
-<img src="example.jpg" data-hdsrc="example-hd.jpg" class="your-class-name" />
+<img src="./example.jpg" data-hdsrc="./example-hd.jpg" class="your-class-name" />
 ```
 
 For more customisability, you can change the lens layout:
