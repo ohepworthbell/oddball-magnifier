@@ -1,7 +1,7 @@
 # Oddball Magnifier
 A touch-friendly, light-weight image magnifier. Can be used on multiple images on a page, and is highly customisable.
 
-![Screenshot of working Oddball Magnifier](http://wearegrowth.com/zoomer.jpg)
+![Screenshot of working Oddball Magnifier](http://wearegrowth.com/github/zoomer.jpg)
 
 
 
