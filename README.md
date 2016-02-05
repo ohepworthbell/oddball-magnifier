@@ -4,6 +4,7 @@ A touch-friendly, light-weight image magnifier. Can be used on multiple images o
 ![Screenshot of working Oddball Magnifier](http://wearegrowth.com/zoomer.jpg)
 
 
+
 ### How to use the Oddball Magnifier
 To designate an image to be magnified:
 ```
@@ -12,7 +13,6 @@ To designate an image to be magnified:
 
 Make sure you have jQuery called, thing simply add 
 ```
-<!-- Remember to include jQuery -->
 <script src='./oddballMagnifier.min.js'></script>
 ```
 
