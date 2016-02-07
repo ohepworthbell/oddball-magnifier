@@ -17,12 +17,15 @@
 
     /* Set up default settings */
     var config = {
-      lens: 340,    // Sets the size  of the magnifying lens (pixels)
-      curve: 340,    // Sets the border-radius of the lens (set to 0 for a square)
-      spread: 20,    // Sets the size/spread of the lens shadow (pixels)
-      shadow: 0.1,  // Sets the opacity of the shadow (between 0 and 1)
-      zoom: 1920,    // Sets the size of the zoomed in image (pixels)
-      border: 8    // Sets the border of the lens (pixels)
+      lens: 340,                    // Sets the size  of the magnifying lens (pixels)
+      curve: 340,                   // Sets the border-radius of the lens (set to 0 for a square)
+      spread: 20,                   // Sets the size/spread of the lens shadow (pixels)
+      shadow: 0.1,                  // Sets the opacity of the shadow (between 0 and 1)
+      zoom: 1920,                   // Sets the size of the zoomed in image (pixels)
+      border: 8,                    // Sets the border of the lens (pixels)
+      inset: false,                 // Sets whether shadow/glow is inset or outer/dropped
+      borderColor: '255,255,255',   // Sets colour of border/dropshadow
+      shadowColor: '0,0,0'          // Sets colour of border/dropshadow
     };
 
     /* Load in default settings */
@@ -35,12 +38,13 @@
 
       /* A few default variables */
       var img=$(this),
-          touch=false,
+        touch=false,
         img,
         mag,
         bg,
         bghd,
-        over;
+        over,
+        hasInset;
 
       /* Set up for each magnifiying image */
       if(img.length) {
@@ -53,6 +57,13 @@
           $('body').append('<div class="oddball-lens"></div>');
         }
 
+        /* test whether to drop shadow/glow or inset for 'lens' effect */
+        if(config.inset) {
+          hasInset='inset ';
+        } else {
+          hasInset='';
+        }
+
         /* Apply default styles to the oddball lens (no external CSS files required */
         $('.oddball-lens').css({
           'position': 'absolute',
@@ -63,10 +74,10 @@
           'height': config.lens + 'px',
           'background-clip': 'border-box',
           'border-radius': config.curve + 'px',
-          'border': config.border+'px solid rgba(255,255,255,0.4)',
+          'border': config.border+'px solid rgba('+config.borderColor+',0.4)',
           'background': '#eee no-repeat 0 0',
           'background-size': config.zoom + 'px',
-          'box-shadow': '0 0 ' + config.spread + 'px rgba(0,0,0,' + config.shadow + ')',
+          'box-shadow': hasInset + '0 0 ' + config.spread + 'px rgba('+config.shadowColor+',' + config.shadow + ')',
           'box-sizing': 'border-box',
           'cursor': 'none',
           'display': 'none'

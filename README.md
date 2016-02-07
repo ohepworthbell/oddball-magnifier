@@ -33,26 +33,31 @@ $('.your-class-name').oddballMagnifier({
 	shadow: 0.1,
 	spread: 30,
 	zoom: 1920,
-	border: 8
+	border: 8,
+	inset: false,
+	borderColor: '255,255,255',
+	shadowColor: '0,0,0'
 });
 ```
 
 
 ### Documentation
-* lens -- Sets the size of the magnifier (pixels)
-* curve -- sets the border-radius of the lends (pixels)
-* shadow -- Sets the opacity of the drop-shadow of the magnifier (set from 0-1)
-* spread -- Sets the size/spread of the drop-shadow (pixels)
-* zoom -- Sets the size of the magnifier image (pixels)
-* border -- Sets the border-width of the magnifier
+* __lens__ - size of the magnifier (pixels)
+* __curve__ - border-radius of the lends (pixels)
+* __shadow__ - opacity of the drop-shadow of the magnifier (set from 0-1)
+* __spread__ - size/spread of the drop-shadow (pixels)
+* __zoom__ - size of the magnifier image (pixels)
+* __border__ - border-width of the magnifier
+* __inset__ - shadow/glow as inset (true or false)
+* __borderColor__ - border color (rgb only - i.e. '255,255,255')
+* __shadowColor__ - shadow color (rgb only - i.e. '0,0,0')
 
 
 ### To do
 * Add more customisable shapes to the magnifier
-* Add ability to change border and shadow colours
-* Anything anyone else can think of/cares to add
 * Possible pre-loading of HD images
 * Transitions on lens to fade in and out
+* Anything anyone else can think of/cares to add
 
 
 ### Dependencies
