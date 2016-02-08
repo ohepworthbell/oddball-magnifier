@@ -1,5 +1,5 @@
 # Oddball Magnifier
-A touch-friendly, light-weight image magnifier. Can be used on multiple images on a page, and is highly customisable.
+A touch-friendly, light-weight image magnifier. Can be used on multiple images on a page, and is highly customisable. [ View demo ](http://ohepworthbell.github.io/projects/clothes-rack-carousel/)
 
 ![Screenshot of working Oddball Magnifier](http://wearegrowth.com/github/zoomer.jpg)
 
