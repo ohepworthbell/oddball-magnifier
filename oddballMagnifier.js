@@ -9,7 +9,7 @@
  */
 
 
-(function($){
+;(function($){
   jQuery.fn.oddballMagnifier = function(settings){
 
     /* Make sure only 1 lens is created */
@@ -27,6 +27,34 @@
       borderColor: "255,255,255",   // Sets colour of border/dropshadow
       shadowColor: "0,0,0"          // Sets colour of border/dropshadow
     };
+
+    /* Function to calculate the lens position */
+    function doMove(x,y,mag) {
+      var offset = config.lens/2;
+
+      var lenstop = mag.offset().top;
+      var left = mag.offset().left;
+      var width = parseInt(mag.attr("data-width"));
+      var height = parseInt(mag.attr("data-height"));
+
+      /* test for mouse/finger position relative to image boundaries */
+      if (x < left || x > (left+width) || y < lenstop || y > (lenstop+height)) {
+        touch=false;
+        over=false;
+        mag=false;
+
+        $(".oddball-lens").hide();
+      }
+
+      /* Set background position as a percentage relative to lens position */
+      var bgpos = (100/width*(x-left)) + "% " + (100/height*(y-lenstop)) + "%";
+
+      $(".oddball-lens").css({
+        top: (y-offset) + "px",
+        left: (x-offset) + "px",
+        "background-position": bgpos
+      });
+    }
 
     /* Load in default settings */
     if(settings){
@@ -90,7 +118,7 @@
         $(window).on("load scroll resize", function() {
           img.each(function() {
             $(this).attr("data-width", $(this).width());
-            $(this).attr("data-height", $(this).height())
+            $(this).attr("data-height", $(this).height());
           });
         });
 
@@ -116,34 +144,6 @@
         img.on("touchstart", function() {
           touch=true;
         });
-
-        /* Function to calculate the lens position */
-        function doMove(x,y,mag) {
-          var offset = config.lens/2;
-
-          var lenstop = mag.offset().top;
-          var left = mag.offset().left;
-          var width = parseInt(mag.attr("data-width"));
-          var height = parseInt(mag.attr("data-height"));
-
-          /* test for mouse/finger position relative to image boundaries */
-          if (x < left || x > (left+width) || y < lenstop || y > (lenstop+height)) {
-            touch=false;
-            over=false;
-            mag=false;
-
-            $(".oddball-lens").hide();
-          }
-
-          /* Set background position as a percentage relative to lens position */
-          var bgpos = (100/width*(x-left)) + "% " + (100/height*(y-lenstop)) + "%";
-
-          $(".oddball-lens").css({
-            top: (y-offset) + "px",
-            left: (x-offset) + "px",
-            "background-position": bgpos
-          });
-        }
 
         /* Get mouse/finger positions and call function with results */
         $(window).on("touchstart touchmove mousemove", function(e) {
