@@ -9,11 +9,25 @@
  */
 
 
-;(function($){
+!(function($){
   jQuery.fn.oddballMagnifier = function(settings){
 
-    /* Make sure only 1 lens is created */
-    var isreplica=false;
+    /* Create base variables */
+    var isreplica=false,
+      touch=false,
+      over=false,
+      img,
+      mag,
+      bg,
+      bghd,
+      bgpos,
+      hasInset,
+      x, y,
+      offset,
+      left,
+      width,
+      height,
+      lenstop;
 
     /* Set up default settings */
     var config = {
@@ -30,12 +44,12 @@
 
     /* Function to calculate the lens position */
     function doMove(x,y,mag) {
-      var offset = config.lens/2;
+      offset = config.lens/2;
 
-      var lenstop = mag.offset().top;
-      var left = mag.offset().left;
-      var width = parseInt(mag.attr("data-width"));
-      var height = parseInt(mag.attr("data-height"));
+      lenstop = mag.offset().top;
+      left = mag.offset().left;
+      width = parseInt(mag.attr("data-width"));
+      height = parseInt(mag.attr("data-height"));
 
       /* test for mouse/finger position relative to image boundaries */
       if (x < left || x > (left+width) || y < lenstop || y > (lenstop+height)) {
@@ -47,7 +61,7 @@
       }
 
       /* Set background position as a percentage relative to lens position */
-      var bgpos = (100/width*(x-left)) + "% " + (100/height*(y-lenstop)) + "%";
+      bgpos = (100/width*(x-left)) + "% " + (100/height*(y-lenstop)) + "%";
 
       $(".oddball-lens").css({
         top: (y-offset) + "px",
@@ -65,14 +79,7 @@
     return this.each(function(){
 
       /* A few default variables */
-      var img=$(this),
-        touch=false,
-        mag,
-        bg,
-        bghd,
-        over,
-        hasInset,
-		x, y;
+      img=$(this);
 
       /* Set up for each magnifiying image */
       if(img.length) {
